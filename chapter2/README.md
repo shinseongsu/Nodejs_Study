@@ -1,7 +1,7 @@
 open SSL 만들기
 
 openssl genrsa 1024 > key.pem
-openssl req -x509 -new -key key.pem > cert.pem
+openssl req -x509 -new -key key.pem > cert.pem -config openssl.cnf
 
 git clone https://github.com/openssl/openssl.git
 
