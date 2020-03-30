@@ -1,11 +1,8 @@
 open SSL 만들기
 
-openssl genrsa 1024 > key.pem
-openssl req -x509 -new -key key.pem > cert.pem -config openssl.cnf
+openssl req -new -newkey rsa:2048 -nodes -keyout localhost.key -out localhost.csr -confg open_ssl.cnf
 
-git clone https://github.com/openssl/openssl.git
-
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
+openssl x509 -req -days 365 -in localhost.csr -signkey localhost.key -out localhost.crt
 
 
 Country Name (2 letter code) [AU]:KO
