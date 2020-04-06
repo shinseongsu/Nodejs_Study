@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/token', async (req, res) => {
   const { clientSecret } = req.body;
   try {
-    const domain = await Domain.find({
+    const domain = await Domain.findOne({
       where: { clientSecret },
       include: {
         model: User,
@@ -26,7 +26,7 @@ router.post('/token', async (req, res) => {
       id: domain.user.id,
       nick: domain.user.nick,
     }, process.env.JWT_SECRET, {
-      expiresIn: '1m', // 1분
+      expiresIn: '10m', // 1분
       issuer: 'nodebird',
     });
     return res.json({
